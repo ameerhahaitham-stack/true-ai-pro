@@ -68,7 +68,7 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
           {cards.map((card) => (
-            
+            <a
               key={card.label}
               href={card.href}
               className="p-5 rounded-2xl transition-all hover:-translate-y-1"
