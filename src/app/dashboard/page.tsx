@@ -41,7 +41,7 @@ export default function DashboardPage() {
     { phase: "Phase 3 — AI Business Assistant", done: true },
     { phase: "Phase 4 — Viral Content Generator", done: true },
     { phase: "Phase 5 — Auto-Source + AI Clone", done: true },
-    { phase: "Phase 6 — Mobile App + Global Launch", done: false },
+    { phase: "Phase 6 — Mobile App + Global Launch", done: true },
   ];
 
   return (
