@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-6">
@@ -27,31 +29,25 @@ export default function Home() {
         </h1>
 
         <p className="text-lg md:text-xl mb-10" style={{ color: "var(--text-dim)" }}>
-          Discover it. Source it. Market it. Sell it.<br />
+          Discover it. Source it. Market it. Sell it.
           All powered entirely by artificial intelligence.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          
+          <Link
             href="/auth/signup"
             className="px-8 py-4 rounded-lg font-semibold text-sm tracking-wide transition-all hover:-translate-y-0.5 text-center"
-            style={{
-              background: "var(--gold)",
-              color: "var(--night)",
-            }}
+            style={{ background: "var(--gold)", color: "var(--night)" }}
           >
             Get Started
-          </a>
-          
+          </Link>
+          <Link
             href="/auth/login"
             className="px-8 py-4 rounded-lg font-semibold text-sm tracking-wide transition-all text-center"
-            style={{
-              border: "1px solid rgba(255,255,255,0.1)",
-              color: "var(--text)",
-            }}
+            style={{ border: "1px solid rgba(255,255,255,0.1)", color: "var(--text)" }}
           >
             Sign In
-          </a>
+          </Link>
         </div>
       </div>
     </main>
