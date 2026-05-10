@@ -54,7 +54,7 @@ export default function DashboardPage() {
             { label: "AI Assistant", desc: "Source · Market · Sell", status: "Live", href: "/dashboard/assistant", active: true },
             { label: "Content Engine", desc: "One click → full campaign", status: "Phase 4", href: "#", active: false },
           ].map((card) => (
-            
+            <a
               key={card.label}
               href={card.href}
               className="p-6 rounded-2xl transition-all hover:-translate-y-1"
