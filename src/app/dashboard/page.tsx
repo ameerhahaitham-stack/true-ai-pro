@@ -30,7 +30,7 @@ export default function DashboardPage() {
     <main className="min-h-screen px-6 py-12">
       <div className="max-w-6xl mx-auto">
 
-        <div className="flex items-center justify-between mb-12">
+        <div className="flex items-center justify-between mb-12 flex-wrap gap-4">
           <div>
             <h1
               className="text-4xl font-bold"
@@ -53,31 +53,34 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {[
-            { label: "Trend Radar", desc: "Viral products worldwide", status: "Phase 2" },
-            { label: "AI Assistant", desc: "Source · Market · Sell", status: "Phase 3" },
-            { label: "Content Engine", desc: "One click → full campaign", status: "Phase 4" },
+            { label: "Trend Radar", desc: "Viral products worldwide", status: "Live", href: "/dashboard/trends", active: true },
+            { label: "AI Assistant", desc: "Source · Market · Sell", status: "Phase 3", href: "#", active: false },
+            { label: "Content Engine", desc: "One click → full campaign", status: "Phase 4", href: "#", active: false },
           ].map((card) => (
-            <div
+            
               key={card.label}
-              className="p-6 rounded-2xl"
+              href={card.href}
+              className="p-6 rounded-2xl transition-all hover:-translate-y-1"
               style={{
                 background: "var(--surface)",
-                border: "1px solid rgba(200,151,58,0.15)",
+                border: card.active ? "1px solid rgba(200,151,58,0.4)" : "1px solid rgba(255,255,255,0.06)",
+                textDecoration: "none",
+                cursor: card.active ? "pointer" : "default",
               }}
             >
               <div className="flex items-start justify-between mb-4">
                 <h2
                   className="text-lg font-semibold"
-                  style={{ fontFamily: "var(--font-syne)" }}
+                  style={{ fontFamily: "var(--font-syne)", color: "var(--text)" }}
                 >
                   {card.label}
                 </h2>
                 <span
                   className="text-xs px-2 py-1 rounded-full"
                   style={{
-                    background: "rgba(200,151,58,0.1)",
-                    color: "var(--gold)",
-                    border: "1px solid rgba(200,151,58,0.2)",
+                    background: card.active ? "rgba(52,211,153,0.1)" : "rgba(200,151,58,0.1)",
+                    color: card.active ? "#34D399" : "var(--gold)",
+                    border: card.active ? "1px solid rgba(52,211,153,0.2)" : "1px solid rgba(200,151,58,0.2)",
                   }}
                 >
                   {card.status}
@@ -92,10 +95,13 @@ export default function DashboardPage() {
               >
                 <div
                   className="h-1 rounded-full"
-                  style={{ width: "25%", background: "var(--gold)" }}
+                  style={{
+                    width: card.active ? "100%" : "25%",
+                    background: card.active ? "#34D399" : "var(--gold)",
+                  }}
                 />
               </div>
-            </div>
+            </a>
           ))}
         </div>
 
@@ -114,7 +120,7 @@ export default function DashboardPage() {
           </h2>
           {[
             { phase: "Phase 1 — Foundation", done: true },
-            { phase: "Phase 2 — Trend Radar + Heat Map", done: false },
+            { phase: "Phase 2 — Trend Radar + Heat Map", done: true },
             { phase: "Phase 3 — AI Business Assistant", done: false },
             { phase: "Phase 4 — Viral Content Generator", done: false },
             { phase: "Phase 5 — Auto-Source + AI Clone", done: false },
