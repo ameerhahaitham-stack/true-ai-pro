@@ -23,6 +23,7 @@ export default function Navbar() {
     { label: "AI Assistant", href: "/dashboard/assistant" },
     { label: "Content Engine", href: "/dashboard/content" },
     { label: "Advanced AI", href: "/dashboard/autosource" },
+    { label: "Pricing", href: "/pricing" },
   ];
 
   return (
