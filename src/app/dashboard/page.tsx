@@ -32,10 +32,7 @@ export default function DashboardPage() {
 
         <div className="flex items-center justify-between mb-12 flex-wrap gap-4">
           <div>
-            <h1
-              className="text-4xl font-bold"
-              style={{ fontFamily: "var(--font-syne)", color: "var(--gold)" }}
-            >
+            <h1 className="text-4xl font-bold" style={{ fontFamily: "var(--font-syne)", color: "var(--gold)" }}>
               True AI Pro
             </h1>
             <p className="mt-1 text-sm" style={{ color: "var(--text-dim)" }}>
@@ -54,10 +51,10 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {[
             { label: "Trend Radar", desc: "Viral products worldwide", status: "Live", href: "/dashboard/trends", active: true },
-            { label: "AI Assistant", desc: "Source · Market · Sell", status: "Phase 3", href: "#", active: false },
+            { label: "AI Assistant", desc: "Source · Market · Sell", status: "Live", href: "/dashboard/assistant", active: true },
             { label: "Content Engine", desc: "One click → full campaign", status: "Phase 4", href: "#", active: false },
           ].map((card) => (
-            <a
+            
               key={card.label}
               href={card.href}
               className="p-6 rounded-2xl transition-all hover:-translate-y-1"
@@ -66,13 +63,11 @@ export default function DashboardPage() {
                 border: card.active ? "1px solid rgba(200,151,58,0.4)" : "1px solid rgba(255,255,255,0.06)",
                 textDecoration: "none",
                 cursor: card.active ? "pointer" : "default",
+                pointerEvents: card.active ? "auto" : "none",
               }}
             >
               <div className="flex items-start justify-between mb-4">
-                <h2
-                  className="text-lg font-semibold"
-                  style={{ fontFamily: "var(--font-syne)", color: "var(--text)" }}
-                >
+                <h2 className="text-lg font-semibold" style={{ fontFamily: "var(--font-syne)", color: "var(--text)" }}>
                   {card.label}
                 </h2>
                 <span
@@ -86,13 +81,8 @@ export default function DashboardPage() {
                   {card.status}
                 </span>
               </div>
-              <p className="text-sm" style={{ color: "var(--text-dim)" }}>
-                {card.desc}
-              </p>
-              <div
-                className="mt-4 h-1 rounded-full"
-                style={{ background: "rgba(200,151,58,0.1)" }}
-              >
+              <p className="text-sm" style={{ color: "var(--text-dim)" }}>{card.desc}</p>
+              <div className="mt-4 h-1 rounded-full" style={{ background: "rgba(200,151,58,0.1)" }}>
                 <div
                   className="h-1 rounded-full"
                   style={{
@@ -107,21 +97,15 @@ export default function DashboardPage() {
 
         <div
           className="p-6 rounded-2xl"
-          style={{
-            background: "var(--surface)",
-            border: "1px solid rgba(255,255,255,0.06)",
-          }}
+          style={{ background: "var(--surface)", border: "1px solid rgba(255,255,255,0.06)" }}
         >
-          <h2
-            className="text-lg font-semibold mb-4"
-            style={{ fontFamily: "var(--font-syne)" }}
-          >
+          <h2 className="text-lg font-semibold mb-4" style={{ fontFamily: "var(--font-syne)" }}>
             Platform status
           </h2>
           {[
             { phase: "Phase 1 — Foundation", done: true },
             { phase: "Phase 2 — Trend Radar + Heat Map", done: true },
-            { phase: "Phase 3 — AI Business Assistant", done: false },
+            { phase: "Phase 3 — AI Business Assistant", done: true },
             { phase: "Phase 4 — Viral Content Generator", done: false },
             { phase: "Phase 5 — Auto-Source + AI Clone", done: false },
             { phase: "Phase 6 — Mobile App + Global Launch", done: false },
@@ -138,10 +122,7 @@ export default function DashboardPage() {
                   border: item.done ? "none" : "1px solid rgba(255,255,255,0.12)",
                 }}
               />
-              <span
-                className="text-sm"
-                style={{ color: item.done ? "var(--text)" : "var(--text-dim)" }}
-              >
+              <span className="text-sm" style={{ color: item.done ? "var(--text)" : "var(--text-dim)" }}>
                 {item.phase}
               </span>
               {item.done && (
