@@ -5,7 +5,7 @@ export async function POST(req: NextRequest) {
     const { product } = await req.json();
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
 
 Respond ONLY with a JSON object, no markdown, no explanation, just raw JSON:
 {
-  "analysis": "2-3 sentence market analysis of this product and why it is or isn't a good opportunity right now",
+  "analysis": "2-3 sentence market analysis of this product and why it is or is not a good opportunity right now",
   "sellPrice": "recommended retail price in USD e.g. $29.99",
   "profitMargin": "estimated profit margin e.g. 45%",
   "bestPlatform": "best platform to sell on e.g. TikTok Shop",
