@@ -32,24 +32,26 @@ export default function Home() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            className="px-8 py-4 rounded-lg font-semibold text-sm tracking-wide transition-all hover:-translate-y-0.5"
+          
+            href="/auth/signup"
+            className="px-8 py-4 rounded-lg font-semibold text-sm tracking-wide transition-all hover:-translate-y-0.5 text-center"
             style={{
               background: "var(--gold)",
               color: "var(--night)",
             }}
           >
             Get Started
-          </button>
-          <button
-            className="px-8 py-4 rounded-lg font-semibold text-sm tracking-wide transition-all"
+          </a>
+          
+            href="/auth/login"
+            className="px-8 py-4 rounded-lg font-semibold text-sm tracking-wide transition-all text-center"
             style={{
               border: "1px solid rgba(255,255,255,0.1)",
               color: "var(--text)",
             }}
           >
-            View Roadmap
-          </button>
+            Sign In
+          </a>
         </div>
       </div>
     </main>
