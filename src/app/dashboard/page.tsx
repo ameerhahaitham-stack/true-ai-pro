@@ -26,6 +26,24 @@ export default function DashboardPage() {
     </main>
   );
 
+  const cards = [
+    { label: "Trend Radar", desc: "Viral products worldwide", href: "/dashboard/trends" },
+    { label: "AI Assistant", desc: "Source · Market · Sell", href: "/dashboard/assistant" },
+    { label: "Content Engine", desc: "One click → full campaign", href: "/dashboard/content" },
+    { label: "Auto-Source", desc: "Find suppliers instantly", href: "/dashboard/autosource" },
+    { label: "AI Clone", desc: "Clone your content style", href: "/dashboard/autosource" },
+    { label: "Collab Match", desc: "Match with influencers", href: "/dashboard/autosource" },
+  ];
+
+  const phases = [
+    { phase: "Phase 1 — Foundation", done: true },
+    { phase: "Phase 2 — Trend Radar + Heat Map", done: true },
+    { phase: "Phase 3 — AI Business Assistant", done: true },
+    { phase: "Phase 4 — Viral Content Generator", done: true },
+    { phase: "Phase 5 — Auto-Source + AI Clone", done: true },
+    { phase: "Phase 6 — Mobile App + Global Launch", done: false },
+  ];
+
   return (
     <main className="min-h-screen px-6 py-12">
       <div className="max-w-6xl mx-auto">
@@ -48,39 +66,31 @@ export default function DashboardPage() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {[
-            { label: "Trend Radar", desc: "Viral products worldwide", status: "Live", href: "/dashboard/trends", active: true },
-            { label: "AI Assistant", desc: "Source · Market · Sell", status: "Live", href: "/dashboard/assistant", active: true },
-            { label: "Content Engine", desc: "One click → full campaign", status: "Live", href: "/dashboard/content", active: true },
-          ].map((card) => (
-            <a
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+          {cards.map((card) => (
+            
               key={card.label}
               href={card.href}
-              className="p-6 rounded-2xl transition-all hover:-translate-y-1"
+              className="p-5 rounded-2xl transition-all hover:-translate-y-1"
               style={{
                 background: "var(--surface)",
-                border: "1px solid rgba(200,151,58,0.4)",
+                border: "1px solid rgba(200,151,58,0.3)",
                 textDecoration: "none",
               }}
             >
-              <div className="flex items-start justify-between mb-4">
-                <h2 className="text-lg font-semibold" style={{ fontFamily: "var(--font-syne)", color: "var(--text)" }}>
+              <div className="flex items-start justify-between mb-3">
+                <h2 className="text-base font-semibold" style={{ fontFamily: "var(--font-syne)", color: "var(--text)" }}>
                   {card.label}
                 </h2>
                 <span
-                  className="text-xs px-2 py-1 rounded-full"
-                  style={{
-                    background: "rgba(52,211,153,0.1)",
-                    color: "#34D399",
-                    border: "1px solid rgba(52,211,153,0.2)",
-                  }}
+                  className="text-xs px-2 py-0.5 rounded-full"
+                  style={{ background: "rgba(52,211,153,0.1)", color: "#34D399", border: "1px solid rgba(52,211,153,0.2)" }}
                 >
-                  {card.status}
+                  Live
                 </span>
               </div>
-              <p className="text-sm" style={{ color: "var(--text-dim)" }}>{card.desc}</p>
-              <div className="mt-4 h-1 rounded-full" style={{ background: "rgba(200,151,58,0.1)" }}>
+              <p className="text-xs" style={{ color: "var(--text-dim)" }}>{card.desc}</p>
+              <div className="mt-3 h-1 rounded-full" style={{ background: "rgba(200,151,58,0.1)" }}>
                 <div className="h-1 rounded-full" style={{ width: "100%", background: "#34D399" }} />
               </div>
             </a>
@@ -94,14 +104,7 @@ export default function DashboardPage() {
           <h2 className="text-lg font-semibold mb-4" style={{ fontFamily: "var(--font-syne)" }}>
             Platform status
           </h2>
-          {[
-            { phase: "Phase 1 — Foundation", done: true },
-            { phase: "Phase 2 — Trend Radar + Heat Map", done: true },
-            { phase: "Phase 3 — AI Business Assistant", done: true },
-            { phase: "Phase 4 — Viral Content Generator", done: true },
-            { phase: "Phase 5 — Auto-Source + AI Clone", done: false },
-            { phase: "Phase 6 — Mobile App + Global Launch", done: false },
-          ].map((item) => (
+          {phases.map((item) => (
             <div
               key={item.phase}
               className="flex items-center gap-3 py-3"
