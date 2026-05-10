@@ -52,18 +52,16 @@ export default function DashboardPage() {
           {[
             { label: "Trend Radar", desc: "Viral products worldwide", status: "Live", href: "/dashboard/trends", active: true },
             { label: "AI Assistant", desc: "Source · Market · Sell", status: "Live", href: "/dashboard/assistant", active: true },
-            { label: "Content Engine", desc: "One click → full campaign", status: "Phase 4", href: "#", active: false },
+            { label: "Content Engine", desc: "One click → full campaign", status: "Live", href: "/dashboard/content", active: true },
           ].map((card) => (
-            <a
+            
               key={card.label}
               href={card.href}
               className="p-6 rounded-2xl transition-all hover:-translate-y-1"
               style={{
                 background: "var(--surface)",
-                border: card.active ? "1px solid rgba(200,151,58,0.4)" : "1px solid rgba(255,255,255,0.06)",
+                border: "1px solid rgba(200,151,58,0.4)",
                 textDecoration: "none",
-                cursor: card.active ? "pointer" : "default",
-                pointerEvents: card.active ? "auto" : "none",
               }}
             >
               <div className="flex items-start justify-between mb-4">
@@ -73,9 +71,9 @@ export default function DashboardPage() {
                 <span
                   className="text-xs px-2 py-1 rounded-full"
                   style={{
-                    background: card.active ? "rgba(52,211,153,0.1)" : "rgba(200,151,58,0.1)",
-                    color: card.active ? "#34D399" : "var(--gold)",
-                    border: card.active ? "1px solid rgba(52,211,153,0.2)" : "1px solid rgba(200,151,58,0.2)",
+                    background: "rgba(52,211,153,0.1)",
+                    color: "#34D399",
+                    border: "1px solid rgba(52,211,153,0.2)",
                   }}
                 >
                   {card.status}
@@ -83,13 +81,7 @@ export default function DashboardPage() {
               </div>
               <p className="text-sm" style={{ color: "var(--text-dim)" }}>{card.desc}</p>
               <div className="mt-4 h-1 rounded-full" style={{ background: "rgba(200,151,58,0.1)" }}>
-                <div
-                  className="h-1 rounded-full"
-                  style={{
-                    width: card.active ? "100%" : "25%",
-                    background: card.active ? "#34D399" : "var(--gold)",
-                  }}
-                />
+                <div className="h-1 rounded-full" style={{ width: "100%", background: "#34D399" }} />
               </div>
             </a>
           ))}
@@ -106,7 +98,7 @@ export default function DashboardPage() {
             { phase: "Phase 1 — Foundation", done: true },
             { phase: "Phase 2 — Trend Radar + Heat Map", done: true },
             { phase: "Phase 3 — AI Business Assistant", done: true },
-            { phase: "Phase 4 — Viral Content Generator", done: false },
+            { phase: "Phase 4 — Viral Content Generator", done: true },
             { phase: "Phase 5 — Auto-Source + AI Clone", done: false },
             { phase: "Phase 6 — Mobile App + Global Launch", done: false },
           ].map((item) => (
