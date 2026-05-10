@@ -18,12 +18,12 @@ export async function POST(req: NextRequest) {
 
 Respond ONLY with a JSON object, no markdown, no explanation, just raw JSON:
 {
-  "analysis": "2-3 sentence market analysis of this product and why it is or is not a good opportunity right now",
+  "analysis": "2-3 sentence market analysis",
   "sellPrice": "recommended retail price in USD e.g. $29.99",
   "profitMargin": "estimated profit margin e.g. 45%",
   "bestPlatform": "best platform to sell on e.g. TikTok Shop",
-  "supplier": "where to source this product and what to look for in a supplier",
-  "marketing": "specific marketing strategy for this product including content style and target audience",
+  "supplier": "where to source this product and what to look for",
+  "marketing": "specific marketing strategy with target audience",
   "actionPlan": [
     "First specific action step",
     "Second specific action step",
@@ -38,13 +38,22 @@ Respond ONLY with a JSON object, no markdown, no explanation, just raw JSON:
           generationConfig: {
             temperature: 0.7,
             maxOutputTokens: 1000,
+            responseMimeType: "application/json",
           },
         }),
       }
     );
 
     const data = await response.json();
-    const text = data.candidates[0].content.parts[0].text;
+    
+    const parts = data?.candidates?.[0]?.content?.parts;
+    const textPart = parts?.find((p: any) => p.text && !p.thought);
+    const text = textPart?.text || parts?.[0]?.text;
+    
+    if (!text) {
+      return NextResponse.json({ error: "No response from AI." }, { status: 500 });
+    }
+
     const clean = text.replace(/```json|```/g, "").trim();
     const parsed = JSON.parse(clean);
     return NextResponse.json(parsed);
