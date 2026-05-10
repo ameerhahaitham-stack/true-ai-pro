@@ -14,15 +14,15 @@ export async function POST(req: NextRequest) {
             {
               parts: [
                 {
-                  text: `You are an expert ecommerce business analyst. Analyze this product for dropshipping/reselling: "${product}". Respond ONLY with raw JSON, no markdown, no backticks:
-{"analysis":"market analysis here","sellPrice":"$29.99","profitMargin":"45%","bestPlatform":"TikTok Shop","supplier":"supplier info here","marketing":"marketing strategy here","actionPlan":["step 1","step 2","step 3","step 4"]}`,
+                  text: `Analyze this product for dropshipping: "${product}". Reply with ONLY this JSON, keep all values short (under 100 characters each):
+{"analysis":"short analysis","sellPrice":"$XX.XX","profitMargin":"XX%","bestPlatform":"platform name","supplier":"short supplier info","marketing":"short marketing tip","actionPlan":["step 1","step 2","step 3","step 4"]}`,
                 },
               ],
             },
           ],
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: 1000,
+            maxOutputTokens: 8192,
             responseMimeType: "application/json",
           },
         }),
@@ -31,10 +31,10 @@ export async function POST(req: NextRequest) {
 
     const data = await response.json();
     const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-    
+
     if (!text) {
-      return NextResponse.json({ 
-        error: `AI error: ${JSON.stringify(data).substring(0, 200)}` 
+      return NextResponse.json({
+        error: `No text in response: ${JSON.stringify(data).substring(0, 200)}`,
       }, { status: 500 });
     }
 
