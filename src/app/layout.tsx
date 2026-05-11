@@ -18,7 +18,19 @@ const syne = Syne({
 
 export const metadata: Metadata = {
   title: "True AI Pro",
-  description: "Discover it. Source it. Market it. Sell it. All with True AI Pro.",
+  description: "The world's first AI commerce and creator platform",
+  manifest: "/manifest.json",
+  themeColor: "#C8973A",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "True AI Pro",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
 };
 
 export default function RootLayout({
@@ -28,6 +40,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${dmSans.variable} ${syne.variable}`}>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icon-192.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="theme-color" content="#C8973A" />
+      </head>
       <body className={dmSans.className}>
         <LangProvider>
           <Navbar />
