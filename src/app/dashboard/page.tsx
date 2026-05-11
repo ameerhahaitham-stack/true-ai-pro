@@ -33,8 +33,8 @@ export default function DashboardPage() {
     { label: t.ai_assistant, desc: t.source_market_sell, href: "/dashboard/assistant" },
     { label: t.content_engine, desc: t.one_click, href: "/dashboard/content" },
     { label: t.advanced_ai, desc: t.find_suppliers, href: "/dashboard/autosource" },
-    { label: "AI Clone", desc: t.clone_style, href: "/dashboard/autosource" },
-    { label: "Collab Match", desc: t.match_influencers, href: "/dashboard/autosource" },
+    { label: isRTL ? "النسخ الذكي" : "AI Clone", desc: t.clone_style, href: "/dashboard/autosource" },
+    { label: isRTL ? "مطابقة الشركاء" : "Collab Match", desc: t.match_influencers, href: "/dashboard/autosource" },
   ];
 
   const phases = [
