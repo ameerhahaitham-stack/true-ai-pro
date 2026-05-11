@@ -49,12 +49,12 @@ export default function DashboardPage() {
   return (
     <main className="min-h-screen px-6 py-12" dir={isRTL ? "rtl" : "ltr"}>
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-between mb-12 flex-wrap gap-4">
+        <div className="flex items-center justify-between mb-8 flex-wrap gap-3">
           <div>
             <h1 className="text-4xl font-bold" style={{ fontFamily: "var(--font-syne)", color: "var(--gold)" }}>True AI Pro</h1>
             <p className="mt-1 text-sm" style={{ color: "var(--text-dim)" }}>{t.dashboard_welcome}, {user?.email}</p>
           </div>
-          <button onClick={handleLogout} className="px-5 py-2 rounded-lg text-sm font-medium transition-all" style={{ border: "1px solid rgba(255,255,255,0.1)", color: "var(--text-dim)" }}>{t.sign_out}</button>
+          <button onClick={handleLogout} className="px-3 py-2 rounded-lg text-xs font-medium transition-all" style={{ border: "1px solid rgba(255,255,255,0.1)", color: "var(--text-dim)" }}>{t.sign_out}</button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
           {cards.map((card) => (
