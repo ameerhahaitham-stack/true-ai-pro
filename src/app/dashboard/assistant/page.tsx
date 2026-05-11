@@ -46,7 +46,7 @@ export default function AssistantPage() {
             ← Dashboard
           </a>
           <h1
-            className="text-4xl font-bold mt-2"
+            className="text-2xl md:text-4xl font-bold mt-2"
             style={{ fontFamily: "var(--font-syne)", color: "var(--gold)" }}
           >
             AI Business Assistant
@@ -63,7 +63,7 @@ export default function AssistantPage() {
           <label className="block text-sm font-medium mb-3" style={{ color: "var(--text)" }}>
             What product do you want to sell?
           </label>
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex flex-col gap-3">
             <input
               type="text"
               value={product}
