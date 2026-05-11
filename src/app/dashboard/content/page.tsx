@@ -67,7 +67,7 @@ export default function ContentPage() {
             ← Dashboard
           </a>
           <h1
-            className="text-4xl font-bold mt-2"
+            className="text-2xl md:text-4xl font-bold mt-2"
             style={{ fontFamily: "var(--font-syne)", color: "var(--gold)" }}
           >
             Viral Content Engine
