@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { useLang } from "@/lib/lang";
 
 export default function DashboardPage() {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const { t, isRTL } = useLang();
 
   useEffect(() => {
     const getUser = async () => {
@@ -22,72 +24,44 @@ export default function DashboardPage() {
 
   if (loading) return (
     <main className="min-h-screen flex items-center justify-center">
-      <p style={{ color: "var(--gold)" }}>Loading...</p>
+      <p style={{ color: "var(--gold)" }}>{t.loading}</p>
     </main>
   );
 
   const cards = [
-    { label: "Trend Radar", desc: "Viral products worldwide", href: "/dashboard/trends" },
-    { label: "AI Assistant", desc: "Source · Market · Sell", href: "/dashboard/assistant" },
-    { label: "Content Engine", desc: "One click → full campaign", href: "/dashboard/content" },
-    { label: "Auto-Source", desc: "Find suppliers instantly", href: "/dashboard/autosource" },
-    { label: "AI Clone", desc: "Clone your content style", href: "/dashboard/autosource" },
-    { label: "Collab Match", desc: "Match with influencers", href: "/dashboard/autosource" },
+    { label: t.trend_radar, desc: t.viral_worldwide, href: "/dashboard/trends" },
+    { label: t.ai_assistant, desc: t.source_market_sell, href: "/dashboard/assistant" },
+    { label: t.content_engine, desc: t.one_click, href: "/dashboard/content" },
+    { label: t.advanced_ai, desc: t.find_suppliers, href: "/dashboard/autosource" },
+    { label: "AI Clone", desc: t.clone_style, href: "/dashboard/autosource" },
+    { label: "Collab Match", desc: t.match_influencers, href: "/dashboard/autosource" },
   ];
 
   const phases = [
-    { phase: "Phase 1 — Foundation", done: true },
-    { phase: "Phase 2 — Trend Radar + Heat Map", done: true },
-    { phase: "Phase 3 — AI Business Assistant", done: true },
-    { phase: "Phase 4 — Viral Content Generator", done: true },
-    { phase: "Phase 5 — Auto-Source + AI Clone", done: true },
-    { phase: "Phase 6 — Mobile App + Global Launch", done: true },
+    { phase: t.phase1, done: true },
+    { phase: t.phase2, done: true },
+    { phase: t.phase3, done: true },
+    { phase: t.phase4, done: true },
+    { phase: t.phase5, done: true },
+    { phase: t.phase6, done: true },
   ];
 
   return (
-    <main className="min-h-screen px-6 py-12">
+    <main className="min-h-screen px-6 py-12" dir={isRTL ? "rtl" : "ltr"}>
       <div className="max-w-6xl mx-auto">
-
         <div className="flex items-center justify-between mb-12 flex-wrap gap-4">
           <div>
-            <h1 className="text-4xl font-bold" style={{ fontFamily: "var(--font-syne)", color: "var(--gold)" }}>
-              True AI Pro
-            </h1>
-            <p className="mt-1 text-sm" style={{ color: "var(--text-dim)" }}>
-              Welcome back, {user?.email}
-            </p>
+            <h1 className="text-4xl font-bold" style={{ fontFamily: "var(--font-syne)", color: "var(--gold)" }}>True AI Pro</h1>
+            <p className="mt-1 text-sm" style={{ color: "var(--text-dim)" }}>{t.dashboard_welcome}, {user?.email}</p>
           </div>
-          <button
-            onClick={handleLogout}
-            className="px-5 py-2 rounded-lg text-sm font-medium transition-all"
-            style={{ border: "1px solid rgba(255,255,255,0.1)", color: "var(--text-dim)" }}
-          >
-            Sign out
-          </button>
+          <button onClick={handleLogout} className="px-5 py-2 rounded-lg text-sm font-medium transition-all" style={{ border: "1px solid rgba(255,255,255,0.1)", color: "var(--text-dim)" }}>{t.sign_out}</button>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
           {cards.map((card) => (
-            <a
-              key={card.label}
-              href={card.href}
-              className="p-5 rounded-2xl transition-all hover:-translate-y-1"
-              style={{
-                background: "var(--surface)",
-                border: "1px solid rgba(200,151,58,0.3)",
-                textDecoration: "none",
-              }}
-            >
+            <a key={card.label} href={card.href} className="p-5 rounded-2xl transition-all hover:-translate-y-1" style={{ background: "var(--surface)", border: "1px solid rgba(200,151,58,0.3)", textDecoration: "none" }}>
               <div className="flex items-start justify-between mb-3">
-                <h2 className="text-base font-semibold" style={{ fontFamily: "var(--font-syne)", color: "var(--text)" }}>
-                  {card.label}
-                </h2>
-                <span
-                  className="text-xs px-2 py-0.5 rounded-full"
-                  style={{ background: "rgba(52,211,153,0.1)", color: "#34D399", border: "1px solid rgba(52,211,153,0.2)" }}
-                >
-                  Live
-                </span>
+                <h2 className="text-base font-semibold" style={{ fontFamily: "var(--font-syne)", color: "var(--text)" }}>{card.label}</h2>
+                <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "rgba(52,211,153,0.1)", color: "#34D399", border: "1px solid rgba(52,211,153,0.2)" }}>{t.live}</span>
               </div>
               <p className="text-xs" style={{ color: "var(--text-dim)" }}>{card.desc}</p>
               <div className="mt-3 h-1 rounded-full" style={{ background: "rgba(200,151,58,0.1)" }}>
@@ -96,42 +70,16 @@ export default function DashboardPage() {
             </a>
           ))}
         </div>
-
-        <div
-          className="p-6 rounded-2xl"
-          style={{ background: "var(--surface)", border: "1px solid rgba(255,255,255,0.06)" }}
-        >
-          <h2 className="text-lg font-semibold mb-4" style={{ fontFamily: "var(--font-syne)" }}>
-            Platform status
-          </h2>
+        <div className="p-6 rounded-2xl" style={{ background: "var(--surface)", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <h2 className="text-lg font-semibold mb-4" style={{ fontFamily: "var(--font-syne)" }}>{t.platform_status}</h2>
           {phases.map((item) => (
-            <div
-              key={item.phase}
-              className="flex items-center gap-3 py-3"
-              style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}
-            >
-              <div
-                className="w-4 h-4 rounded-full flex-shrink-0"
-                style={{
-                  background: item.done ? "var(--gold)" : "rgba(255,255,255,0.08)",
-                  border: item.done ? "none" : "1px solid rgba(255,255,255,0.12)",
-                }}
-              />
-              <span className="text-sm" style={{ color: item.done ? "var(--text)" : "var(--text-dim)" }}>
-                {item.phase}
-              </span>
-              {item.done && (
-                <span
-                  className="ml-auto text-xs px-2 py-0.5 rounded-full"
-                  style={{ background: "rgba(52,211,153,0.1)", color: "#34D399" }}
-                >
-                  Complete
-                </span>
-              )}
+            <div key={item.phase} className="flex items-center gap-3 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+              <div className="w-4 h-4 rounded-full flex-shrink-0" style={{ background: item.done ? "var(--gold)" : "rgba(255,255,255,0.08)", border: item.done ? "none" : "1px solid rgba(255,255,255,0.12)" }} />
+              <span className="text-sm" style={{ color: item.done ? "var(--text)" : "var(--text-dim)" }}>{item.phase}</span>
+              {item.done && <span className="ml-auto text-xs px-2 py-0.5 rounded-full" style={{ background: "rgba(52,211,153,0.1)", color: "#34D399" }}>{t.complete}</span>}
             </div>
           ))}
         </div>
-
       </div>
     </main>
   );
